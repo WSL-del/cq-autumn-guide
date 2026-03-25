@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>渝州之秋·重庆公园赏秋全攻略</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .img-preview {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-preview img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      background: #f97316;
+      color: white;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    /* 枫叶飘落 */
+    .falling-leaf {
+      position: fixed;
+      top: -50px;
+      z-index: 998;
+      pointer-events: none;
+      animation: fall linear;
+      opacity: 0.7;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    /* 滚动渐入 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* 图片hover缩放 */
+    .park-img {
+      transition: transform 0.3s ease;
+    }
+    .park-img:hover {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+  <!-- 图片预览遮罩 -->
+  <div class="img-preview" id="imgPreview">
+    <img src="" alt="预览图" id="previewImg">
+  </div>
+
+  <!-- 返回顶部按钮 -->
+  <div id="backToTop">
+    <i class="fa fa-arrow-up"></i>
+  </div>
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 px-4">
+    <div class="max-w-6xl mx-auto flex justify-center space-x-6 md:space-x-8 flex-wrap">
+      <a href="#timeline" class="text-white hover:text-amber-200 transition-colors">赏秋时间轴</a>
+      <a href="#parks" class="text-white hover:text-amber-200 transition-colors">必打卡公园</a>
+      <a href="#routes" class="text-white hover:text-amber-200 transition-colors">主题游玩线路</a>
+      <a href="#tips" class="text-white hover:text-amber-200 transition-colors">实用小贴士</a>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-r from-orange-400 to-amber-500 text-white py-16 px-4 pt-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img src="https://aka.doubaocdn.com/s/2cif1w7Ve6" class="w-full h-full object-cover" alt="背景">
+    </div>
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">渝州之秋 · 重庆公园赏秋全攻略</h1>
+      <p class="text-lg md:text-xl opacity-90">都说重庆的秋天是被低估的浪漫，金黄的银杏、层林的红枫、江景与彩林交织</p>
+      <p class="mt-2 opacity-80">这是属于山城的限定秋色，错过就要等一年</p>
+    </div>
+  </header>
+
+  <section id="timeline" class="py-12 px-4">
+    <div class="max-w-6xl mx-auto fade-in">
+      <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">赏秋时间轴 · 选对时间不白跑</h2>
+      <div class="relative">
+        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-orange-200"></div>
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 md:text-right md:pr-8 mb-4 md:mb-0">
+              <h3 class="text-xl font-semibold text-red-600">10月中下旬</h3>
+              <p class="text-gray-600">周边红叶初染</p>
+              <p class="text-gray-500 text-sm">高海拔地区率先入秋，五洲园、山王坪的红枫水杉开始变色</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-red-500 z-10 flex items-center justify-center text-white">
+              <i class="fa fa-leaf"></i>
+            </div>
+            <div class="md:w-1/2 md:pl-8"></div>
+          </div>
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 md:pr-8"></div>
+            <div class="w-10 h-10 rounded-full bg-orange-500 z-10 flex items-center justify-center text-white">
+              <i class="fa fa-tree"></i>
+            </div>
+            <div class="md:w-1/2 md:pl-8 mb-4 md:mb-0">
+              <h3 class="text-xl font-semibold text-orange-600">11月上中旬</h3>
+              <p class="text-gray-600">主城彩叶尽染</p>
+              <p class="text-gray-500 text-sm">鹅岭、彩云湖的红枫水杉全面变色，主城率先进入赏秋期</p>
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 md:text-right md:pr-8 mb-4 md:mb-0">
+              <h3 class="text-xl font-semibold text-amber-600">11月底-12月中</h3>
+              <p class="text-gray-600">主城银杏巅峰</p>
+              <p class="text-gray-500 text-sm">照母山、园博园的银杏全面变黄，古建与金叶的浪漫</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-amber-500 z-10 flex items-center justify-center text-white">
+              <i class="fa fa-sun-o"></i>
+            </div>
+            <div class="md:w-1/2 md:pl-8"></div>
+          </div>
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 md:pr-8"></div>
+            <div class="w-10 h-10 rounded-full bg-gray-500 z-10 flex items-center justify-center text-white">
+              <i class="fa fa-pagelines"></i>
+            </div>
+            <div class="md:w-1/2 md:pl-8">
+              <h3 class="text-xl font-semibold text-gray-600">12月</h3>
+              <p class="text-gray-600">长江红叶盛宴</p>
+              <p class="text-gray-500 text-sm">巫山的三峡红叶进入最佳，最晚的赏秋限定盛宴</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="parks" class="py-12 px-4 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-10 text-gray-800 fade-in">必打卡公园 · 承包你的整个秋天</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in">
+          <img src="https://aka.doubaocdn.com/s/HJdt1w7Vdn" alt="山王坪水杉林秋景" class="w-full h-64 object-cover cursor-pointer park-img" data-src="https://aka.doubaocdn.com/s/HJdt1w7Vdn">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">山王坪喀斯特国家生态公园</h3>
+            <p class="text-gray-600 mb-4">高海拔的秘境秋色，一半青一半红的水杉林，迷雾森林的氛围感</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-orange-500 w-5"></i>
+                <span class="text-gray-600">最佳观赏：10月底-11月中旬</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-map-marker text-red-500 w-5"></i>
+                <span class="text-gray-600">必打卡：金色水杉大道、迷雾森林</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-subway text-blue-500 w-5"></i>
+                <span class="text-gray-600">交通：主城自驾1.5小时，南川站打车20分钟</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-car text-green-500 w-5"></i>
+                <span class="text-gray-600">停车：免费，景区门口超大停车场</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-ticket text-green-500 w-5"></i>
+                <span class="text-gray-600">门票：60元/人，凭高铁票可免票</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-amber-50 rounded-lg text-sm text-amber-800">
+              <i class="fa fa-cutlery mr-1"></i>美食：门口的山王坪农家乐笋子鸡，人均50，超地道
+            </div>
+            <a href="https://maps.apple.com/?q=重庆山王坪喀斯特国家生态公园" target="_blank" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg text-center block hover:bg-orange-600 transition-colors">
+              <i class="fa fa-map-o mr-1"></i>一键导航到这里
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in">
+          <img src="https://aka.doubaocdn.com/s/PjVr1w7VeJ" alt="照母山森林公园秋景" class="w-full h-64 object-cover cursor-pointer park-img" data-src="https://aka.doubaocdn.com/s/PjVr1w7VeJ">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">照母山森林公园</h3>
+            <p class="text-gray-600 mb-4">主城最大的城市森林公园，层林尽染的湖光秋色，水杉与银杏交织</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-orange-500 w-5"></i>
+                <span class="text-gray-600">最佳观赏：11月底-12月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-map-marker text-red-500 w-5"></i>
+                <span class="text-gray-600">必打卡：揽星塔、水杉林、银杏步道</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-subway text-blue-500 w-5"></i>
+                <span class="text-gray-600">交通：轨道交通5号线幸福广场站步行10分钟</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-car text-green-500 w-5"></i>
+                <span class="text-gray-600">停车：5元/小时，也可停附近商场</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-ticket text-green-500 w-5"></i>
+                <span class="text-gray-600">门票：免费</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-amber-50 rounded-lg text-sm text-amber-800">
+              <i class="fa fa-cutlery mr-1"></i>美食：附近的杨记隆府江湖菜，人均60，重庆特色
+            </div>
+            <a href="https://maps.apple.com/?q=重庆照母山森林公园" target="_blank" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg text-center block hover:bg-orange-600 transition-colors">
+              <i class="fa fa-map-o mr-1"></i>一键导航到这里
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in">
+          <img src="https://aka.doubaocdn.com/s/upe81w7VeN" alt="鹅岭公园秋景" class="w-full h-64 object-cover cursor-pointer park-img" data-src="https://aka.doubaocdn.com/s/upe81w7VeN">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">鹅岭公园</h3>
+            <p class="text-gray-600 mb-4">渝中区的城市之巅，俯瞰两江四岸的秋景，红枫与古建的完美融合</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-orange-500 w-5"></i>
+                <span class="text-gray-600">最佳观赏：11月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-map-marker text-red-500 w-5"></i>
+                <span class="text-gray-600">必打卡：瞰胜楼、红枫林、鹅岭菊展</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-subway text-blue-500 w-5"></i>
+                <span class="text-gray-600">交通：轨道交通1号线鹅岭站步行5分钟</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-car text-green-500 w-5"></i>
+                <span class="text-gray-600">停车：8元/小时，建议停地铁口更划算</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-ticket text-green-500 w-5"></i>
+                <span class="text-gray-600">门票：免费</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-amber-50 rounded-lg text-sm text-amber-800">
+              <i class="fa fa-cutlery mr-1"></i>美食：附近的花市豌杂面，人均15，重庆老字号
+            </div>
+            <a href="https://maps.apple.com/?q=重庆鹅岭公园" target="_blank" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg text-center block hover:bg-orange-600 transition-colors">
+              <i class="fa fa-map-o mr-1"></i>一键导航到这里
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in">
+          <img src="https://aka.doubaocdn.com/s/bPzR1w7Vdy" alt="重庆园博园银杏秋景" class="w-full h-64 object-cover cursor-pointer park-img" data-src="https://aka.doubaocdn.com/s/bPzR1w7Vdy">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">重庆园博园</h3>
+            <p class="text-gray-600 mb-4">主城最大的园林公园，上千株银杏金黄成海，湖景与金叶的油画</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-orange-500 w-5"></i>
+                <span class="text-gray-600">最佳观赏：11月底-12月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-map-marker text-red-500 w-5"></i>
+                <span class="text-gray-600">必打卡：门口银杏大道、湖景银杏林</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-subway text-blue-500 w-5"></i>
+                <span class="text-gray-600">交通：轨道交通5号线国博中心站</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-car text-green-500 w-5"></i>
+                <span class="text-gray-600">停车：免费，景区门口停车场</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-ticket text-green-500 w-5"></i>
+                <span class="text-gray-600">门票：免费</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-amber-50 rounded-lg text-sm text-amber-800">
+              <i class="fa fa-cutlery mr-1"></i>美食：附近的徐鼎盛民间菜，人均50，性价比超高
+            </div>
+            <a href="https://maps.apple.com/?q=重庆园博园" target="_blank" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg text-center block hover:bg-orange-600 transition-colors">
+              <i class="fa fa-map-o mr-1"></i>一键导航到这里
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in">
+          <img src="https://aka.doubaocdn.com/s/4esB1w7Ve2" alt="彩云湖湿地公园秋景" class="w-full h-64 object-cover cursor-pointer park-img" data-src="https://aka.doubaocdn.com/s/4esB1w7Ve2">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">彩云湖湿地公园</h3>
+            <p class="text-gray-600 mb-4">主城的城市湿地，湖光倒影的水杉林，静谧的秋日治愈地</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-orange-500 w-5"></i>
+                <span class="text-gray-600">最佳观赏：11月</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-map-marker text-red-500 w-5"></i>
+                <span class="text-gray-600">必打卡：湖边水杉林、环湖步道</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-subway text-blue-500 w-5"></i>
+                <span class="text-gray-600">交通：轨道交通环线彩云湖站</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-car text-green-500 w-5"></i>
+                <span class="text-gray-600">停车：4元/小时，景区停车场</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-ticket text-green-500 w-5"></i>
+                <span class="text-gray-600">门票：免费</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-amber-50 rounded-lg text-sm text-amber-800">
+              <i class="fa fa-cutlery mr-1"></i>美食：附近的枇杷园火锅，人均70，南山火锅代表
+            </div>
+            <a href="https://maps.apple.com/?q=重庆彩云湖湿地公园" target="_blank" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg text-center block hover:bg-orange-600 transition-colors">
+              <i class="fa fa-map-o mr-1"></i>一键导航到这里
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in">
+          <img src="https://aka.doubaocdn.com/s/2cif1w7Ve6" alt="巫山神女景区红叶秋景" class="w-full h-64 object-cover cursor-pointer park-img" data-src="https://aka.doubaocdn.com/s/2cif1w7Ve6">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">巫山神女景区</h3>
+            <p class="text-gray-600 mb-4">长江三峡的红叶盛宴，满山红叶映江景，三峡的限定秋色</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-orange-500 w-5"></i>
+                <span class="text-gray-600">最佳观赏：11月底-12月底</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-map-marker text-red-500 w-5"></i>
+                <span class="text-gray-600">必打卡：神女天路观景台、巫峡红叶</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-subway text-blue-500 w-5"></i>
+                <span class="text-gray-600">交通：高铁到巫山站，换乘景区直通车</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-car text-green-500 w-5"></i>
+                <span class="text-gray-600">停车：10元/天，景区门口停车场</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-ticket text-green-500 w-5"></i>
+                <span class="text-gray-600">门票：红叶节期间免费</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-amber-50 rounded-lg text-sm text-amber-800">
+              <i class="fa fa-cutlery mr-1"></i>美食：巫山的纸包鱼，人均60，当地特色
+            </div>
+            <a href="https://maps.apple.com/?q=重庆巫山神女景区" target="_blank" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg text-center block hover:bg-orange-600 transition-colors">
+              <i class="fa fa-map-o mr-1"></i>一键导航到这里
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 md:col-span-2 fade-in">
+          <img src="https://aka.doubaocdn.com/s/MLLc1w7Ve9" alt="五洲园红枫秋景" class="w-full h-64 object-cover cursor-pointer park-img" data-src="https://aka.doubaocdn.com/s/MLLc1w7Ve9">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">五洲园</h3>
+            <p class="text-gray-600 mb-4">巴南的红枫秘境，500亩红枫换红装，漫山遍野的秋日红枫</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fa fa-calendar text-orange-500 w-5"></i>
+                <span class="text-gray-600">最佳观赏：10月底-11月底</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-map-marker text-red-500 w-5"></i>
+                <span class="text-gray-600">必打卡：红枫观赏区、羽毛枫步道</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-subway text-blue-500 w-5"></i>
+                <span class="text-gray-600">交通：主城自驾1小时到巴南区天星寺镇</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-car text-green-500 w-5"></i>
+                <span class="text-gray-600">停车：免费，景区门口停车场</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-ticket text-green-500 w-5"></i>
+                <span class="text-gray-600">门票：30元/人，停车免费</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-amber-50 rounded-lg text-sm text-amber-800">
+              <i class="fa fa-cutlery mr-1"></i>美食：附近的圣灯山农家乐，人均40，农家菜超地道
+            </div>
+            <a href="https://maps.apple.com/?q=重庆巴南五洲园" target="_blank" class="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg text-center block hover:bg-orange-600 transition-colors">
+              <i class="fa fa-map-o mr-1"></i>一键导航到这里
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="routes" class="py-12 px-4">
+    <div class="max-w-6xl mx-auto fade-in">
+      <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">主题游玩线路 · 直接抄作业</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center text-amber-600">
+              <i class="fa fa-leaf text-xl"></i>
+            </div>
+            <h3 class="ml-4 text-xl font-bold">主城银杏漫游线</h3>
+          </div>
+          <p class="text-gray-600 mb-3">适合：喜欢银杏、古建，轻松不累的游客</p>
+          <div class="space-y-2 text-sm">
+            <p><span class="font-semibold">上午：</span>照母山森林公园逛水杉银杏，拍湖景秋景</p>
+            <p><span class="font-semibold">中午：</span>照母山附近吃重庆江湖菜</p>
+            <p><span class="font-semibold">下午：</span>园博园逛银杏大道，拍湖景金叶，傍晚去磁器口宝轮寺</p>
+          </div>
+          <p class="mt-3 text-xs text-gray-500">全程地铁可达，一天轻松逛完，不用赶路</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600">
+              <i class="fa fa-hiking text-xl"></i>
+            </div>
+            <h3 class="ml-4 text-xl font-bold">周边红叶徒步线</h3>
+          </div>
+          <p class="text-gray-600 mb-3">适合：喜欢徒步、看红叶，爱运动的游客</p>
+          <div class="space-y-2 text-sm">
+            <p><span class="font-semibold">上午：</span>山王坪喀斯特公园，逛水杉林，看迷雾森林</p>
+            <p><span class="font-semibold">中午：</span>山王坪门口吃笋子鸡火锅</p>
+            <p><span class="font-semibold">下午：</span>五洲园，逛红枫林，看漫山红枫</p>
+          </div>
+          <p class="mt-3 text-xs text-gray-500">两个公园离得不远，适合周末自驾，运动量适中</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+              <i class="fa fa-child text-xl"></i>
+            </div>
+            <h3 class="ml-4 text-xl font-bold">主城休闲亲子线</h3>
+          </div>
+          <p class="text-gray-600 mb-3">适合：带娃家庭，想轻松遛娃、看秋景的游客</p>
+          <div class="space-y-2 text-sm">
+            <p><span class="font-semibold">上午：</span>彩云湖湿地公园，逛环湖步道，看水杉倒影</p>
+            <p><span class="font-semibold">中午：</span>彩云湖附近吃亲子餐厅</p>
+            <p><span class="font-semibold">下午：</span>鹅岭公园，逛菊展，看江景，带娃逛公园</p>
+          </div>
+          <p class="mt-3 text-xs text-gray-500">两个公园都免费，步道平缓，孩子可以随便跑，轻松不累</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+              <i class="fa fa-ship text-xl"></i>
+            </div>
+            <h3 class="ml-4 text-xl font-bold">长江红叶周末线</h3>
+          </div>
+          <p class="text-gray-600 mb-3">适合：周末周边游，想体验长江红叶的游客</p>
+          <div class="space-y-2 text-sm">
+            <p><span class="font-semibold">第一天：</span>高铁到巫山，逛神女天路，看红叶江景，住巫山</p>
+            <p><span class="font-semibold">第二天：</span>逛巫峡，看晨雾红叶，返程</p>
+          </div>
+          <p class="mt-3 text-xs text-gray-500">适合周末两天一夜，看三峡的限定红叶，超震撼</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tips" class="py-12 px-4 bg-gray-50">
+    <div class="max-w-6xl mx-auto fade-in">
+      <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">赏秋实用小贴士</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center p-6 bg-white rounded-xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+          <i class="fa fa-clock-o text-4xl text-orange-500 mb-4"></i>
+          <h3 class="font-bold mb-2">错峰出行</h3>
+          <p class="text-sm text-gray-600">热门公园尽量早9点前到，避开周末10-14点的人流高峰</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+          <i class="fa fa-tshirt text-4xl text-orange-500 mb-4"></i>
+          <h3 class="font-bold mb-2">穿搭建议</h3>
+          <p class="text-sm text-gray-600">重庆秋早晚凉，带薄外套；穿浅色系衣服，拍照更出片</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+          <i class="fa fa-camera text-4xl text-orange-500 mb-4"></i>
+          <h3 class="font-bold mb-2">拍照技巧</h3>
+          <p class="text-sm text-gray-600">上午9-11点、下午3-5点光线最佳，逆光拍水杉银杏通透感拉满</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-xl shadow hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+          <i class="fa fa-heart text-4xl text-orange-500 mb-4"></i>
+          <h3 class="font-bold mb-2">文明赏秋</h3>
+          <p class="text-sm text-gray-600">不要摇树、摘叶、踩草坪，把美景留给更多人</p>
+        </div>
+      </div>
+      <div class="mt-8 p-4 bg-blue-50 rounded-lg text-center text-sm text-blue-800">
+        <i class="fa fa-info-circle mr-1"></i>温馨提示：红叶、银杏的变色时间受当年气温、降水影响较大，出行前1周建议查看最新的实况分享，避免跑空哦！
+      </div>
+    </div>
+  </section>
+
+  <!-- 分享栏 -->
+  <div class="py-6 px-4 bg-white border-t">
+    <div class="max-w-6xl mx-auto text-center fade-in">
+      <p class="text-gray-700 mb-4">觉得攻略有用？分享给你的朋友吧</p>
+      <div class="flex justify-center space-x-4">
+        <button id="copyLink" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+          <i class="fa fa-link mr-1"></i>复制链接
+        </button>
+        <button id="shareWechat" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+          <i class="fa fa-wechat mr-1"></i>分享到朋友圈
+        </button>
+      </div>
+      <p id="copyTip" class="mt-2 text-green-600 text-sm hidden">链接已复制，快去分享吧！</p>
+      <p id="wechatTip" class="mt-2 text-green-600 text-sm hidden">点击右上角，分享到朋友圈就可以啦~</p>
+    </div>
+  </div>
+
+  <footer class="bg-gray-800 text-white py-8 px-4 text-center">
+    <p>渝州之秋，一年一会，别错过这山城的限定浪漫</p>
+    <p class="text-sm text-gray-400 mt-2">攻略信息整理自重庆本地宝、重庆旅游网等官方平台，仅供参考</p>
+  </footer>
+
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-white', 'shadow');
+        navbar.querySelectorAll('a').forEach(a => {
+          a.classList.remove('text-white');
+          a.classList.add('text-gray-800', 'hover:text-orange-500');
+        });
+      } else {
+        navbar.classList.remove('bg-white', 'shadow');
+        navbar.querySelectorAll('a').forEach(a => {
+          a.classList.add('text-white');
+          a.classList.remove('text-gray-800', 'hover:text-orange-500');        });
+      }
+      // 返回顶部按钮显示
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'flex';
+      } else {
+        backToTop.style.display = 'none';
+      }
+      // 滚动渐入
+      const fadeElements = document.querySelectorAll('.fade-in');
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // 返回顶部
+    document.getElementById('backToTop').addEventListener('click', function() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // 图片预览
+    const imgPreview = document.getElementById('imgPreview');
+    const previewImg = document.getElementById('previewImg');
+    document.querySelectorAll('.park-img').forEach(img => {
+      img.addEventListener('click', function() {
+        previewImg.src = this.dataset.src;
+        imgPreview.style.display = 'flex';
+      });
+    });
+    imgPreview.addEventListener('click', function() {
+      imgPreview.style.display = 'none';
+    });
+
+    // 分享功能
+    document.getElementById('copyLink').addEventListener('click', function() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        document.getElementById('copyTip').classList.remove('hidden');
+        setTimeout(() => {
+          document.getElementById('copyTip').classList.add('hidden');
+        }, 2000);
+      });
+    });
+    document.getElementById('shareWechat').addEventListener('click', function() {
+      document.getElementById('wechatTip').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('wechatTip').classList.add('hidden');
+      }, 3000);
+    });
+
+    // 枫叶飘落
+    function createLeaf() {
+      const leaf = document.createElement('div');
+      leaf.className = 'falling-leaf';
+      leaf.innerHTML = '<i class="fa fa-leaf"></i>';
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.fontSize = (Math.random() * 15 + 10) + 'px';
+      leaf.style.color = ['#f97316', '#ef4444', '#eab308'][Math.floor(Math.random()*3)];
+      leaf.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      document.body.appendChild(leaf);
+      setTimeout(() => {
+        leaf.remove();
+      }, 10000);
+    }
+    setInterval(createLeaf, 800);
+
+    // 初始加载的时候，触发一次滚动，让可见的元素先显示
+    window.addEventListener('load', function() {
+      window.dispatchEvent(new Event('scroll'));
+    });
+  </script>
+
+</body></html>
